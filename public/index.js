@@ -9,10 +9,12 @@ let previousSimbol = "";
 let previousOperator = "";
 let stringAll = "";
 const NUMS_WITHOUT_ZERO = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+const ALL_NUMS = ["0", ...NUMS_WITHOUT_ZERO]
 const PERIOD = ".";
+const PERCENT = "%";
 let currentInput = "";
 let isClearCurrentInput = false;
-const ESCAPE_OPERATIONS = ["=", "AC", ...OPERATIONS]
+const ESCAPE_OPERATIONS = ["=", "AC", ...OPERATIONS, PERCENT]
 btnContainer.addEventListener("click", (event) => {
 
         const value = event.target.closest(".btn").getAttribute("value")
@@ -73,7 +75,7 @@ btnContainer.addEventListener("click", (event) => {
            }
             if( value === "=") {
                 console.log(num2 === currentInput, "ghgh", num2, currentInput)
-                if( num1 && !isNaN(previousSimbol)) {
+                if( num1 && (ALL_NUMS.includes(previousSimbol) || previousSimbol === PERCENT)) {
                     console.log('%c++===','background: green')
                     input.innerHTML = getResult(num1, currentInput, previousOperator);
                     num1 = "";
@@ -94,6 +96,11 @@ btnContainer.addEventListener("click", (event) => {
                     input.innerHTML = "0";
                 }else {
                     input.innerHTML = "0";
+                }
+            }
+            if( value === PERCENT) {
+                if( currentInput && !OPERATIONS.includes(previousSimbol)){
+                    input.innerHTML = currentInput / 100;
                 }
             }
 
