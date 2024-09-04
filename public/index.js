@@ -28,9 +28,15 @@ btnContainer.addEventListener("click", (event) => {
             currentInput = input.innerHTML;
             stringAll += value;
             /**
-             * обработать ситуацию, когда предыдущий символ равно
+             * Если предыдущая операция была = и вводим новое число, обнуляем все переменные
              */
            if( NUMS_WITHOUT_ZERO.includes(value) ) {
+               if ( previousSimbol === "=") {
+                   currentInput = "";
+                   previousOperator = "";
+                   num1 = "";
+                   num2 = "";
+               }
                temporyText = parseFloat(currentInput + value ).toString();
                input.innerHTML = temporyText;
            }
