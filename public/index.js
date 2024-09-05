@@ -1,5 +1,3 @@
-console.log('string');
-
 const btnContainer = document.getElementById("btnContainer");
 const input = document.getElementById("input");
 const OPERATIONS = ["+", "-", "*", "/"];
@@ -14,7 +12,8 @@ const PERIOD = ".";
 const PERCENT = "%";
 let currentInput = "";
 let isClearCurrentInput = false;
-const ESCAPE_OPERATIONS = ["=", "AC", ...OPERATIONS, PERCENT]
+let signBefore = "";
+const ESCAPE_OPERATIONS = ["=", "AC", "signBefore", ...OPERATIONS, PERCENT]
 btnContainer.addEventListener("click", (event) => {
 
         const value = event.target.closest(".btn").getAttribute("value")
@@ -22,13 +21,22 @@ btnContainer.addEventListener("click", (event) => {
         if( value ) {
 
             if( isClearCurrentInput && !ESCAPE_OPERATIONS.includes(value)) {
-                console.log('%c++===','background: green')
                 input.innerHTML = "";
                 isClearCurrentInput = false;
             }
+
             let temporyText = "";
             currentInput = input.innerHTML;
             stringAll += value;
+            if( value === "signBefore") {
+                signBefore = signBefore === '' ? '-' : ''
+                if( currentInput && !OPERATIONS.includes(previousSimbol)) {
+                    input.innerHTML = `${signBefore}${currentInput.replace("-", "")}`
+                }else {
+                    input.innerHTML = `${signBefore}0`;
+                    isClearCurrentInput = false;
+                }
+            }
             /**
              * Если предыдущая операция была = и вводим новое число, обнуляем все переменные
              */
@@ -53,30 +61,25 @@ btnContainer.addEventListener("click", (event) => {
                }
            }
            if( OPERATIONS.includes(value) ) {
+               //signBefore = "";
                if( OPERATIONS.includes(previousSimbol)) {
                    previousOperator = value;
                }else {
-                   console.log('%c++===','background: red', num1, !num1, currentInput);
                    if( num1 ) {
-                       console.log('%c++===','background: yellow', num1, currentInput, previousOperator);
                        input.innerHTML = getResult(num1, currentInput, previousOperator);
-                       console.log(input.innerHTML)
                        num1 = input.innerHTML;
                        isClearCurrentInput = true;
                    }
                    if( !num1 && currentInput ) {
                        num1 = parseFloat(currentInput);
                        isClearCurrentInput = true;
-                       console.log('%c++===','background: orange', num1);
                    }
 
                    previousOperator = value;
                }
            }
             if( value === "=") {
-                console.log(num2 === currentInput, "ghgh", num2, currentInput)
-                if( num1 && (ALL_NUMS.includes(previousSimbol) || previousSimbol === PERCENT)) {
-                    console.log('%c++===','background: green')
+                if( num1 && (ALL_NUMS.includes(previousSimbol) || previousSimbol === PERCENT || previousSimbol === "signBefore")) {
                     input.innerHTML = getResult(num1, currentInput, previousOperator);
                     num1 = "";
                     num2 = parseFloat(currentInput);
@@ -86,11 +89,6 @@ btnContainer.addEventListener("click", (event) => {
                 }
             }
             if (value === "AC") {
-                console.log('%c++===','background: purple',currentInput, num1, "0")
-                if( !num1 && currentInput) {
-                    console.log('%c++===','background: purple',currentInput, "1")
-                    input.innerHTML = "0";
-                }
                 if( num1 && OPERATIONS.includes(previousSimbol) ) {
                     num1 = "";
                     input.innerHTML = "0";
@@ -104,9 +102,8 @@ btnContainer.addEventListener("click", (event) => {
                 }
             }
 
+
            previousSimbol = value;
-            console.log('%c++===','background: blue',previousSimbol);
-           console.log(stringAll)
         }
 
 });
