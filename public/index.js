@@ -40,7 +40,7 @@ btnContainer.addEventListener("click", (event) => {
             /**
              * Если предыдущая операция была = и вводим новое число, обнуляем все переменные
              */
-           if( NUMS_WITHOUT_ZERO.includes(value) ) {
+           else if( NUMS_WITHOUT_ZERO.includes(value) ) {
                if ( previousSimbol === "=") {
                    currentInput = "";
                    previousOperator = "";
@@ -50,17 +50,17 @@ btnContainer.addEventListener("click", (event) => {
                temporyText = parseFloat(currentInput + value ).toString();
                input.innerHTML = temporyText;
            }
-           if( value === "0") {
+           else if( value === "0") {
                if( currentInput !== "0") {
                    input.innerHTML += value;
                }
            }
-           if( value === PERIOD) {
+           else if( value === PERIOD) {
                if( !currentInput.includes(PERIOD)) {
                    input.innerHTML += PERIOD;
                }
            }
-           if( OPERATIONS.includes(value) ) {
+           else if( OPERATIONS.includes(value) ) {
                //signBefore = "";
                if( OPERATIONS.includes(previousSimbol)) {
                    previousOperator = value;
@@ -69,8 +69,7 @@ btnContainer.addEventListener("click", (event) => {
                        input.innerHTML = getResult(num1, currentInput, previousOperator);
                        num1 = input.innerHTML;
                        isClearCurrentInput = true;
-                   }
-                   if( !num1 && currentInput ) {
+                   } else if ( !num1 && currentInput ) {
                        num1 = parseFloat(currentInput);
                        isClearCurrentInput = true;
                    }
@@ -78,17 +77,16 @@ btnContainer.addEventListener("click", (event) => {
                    previousOperator = value;
                }
            }
-            if( value === "=") {
+           else if( value === "=") {
                 if( num1 && (ALL_NUMS.includes(previousSimbol) || previousSimbol === PERCENT || previousSimbol === "signBefore")) {
                     input.innerHTML = getResult(num1, currentInput, previousOperator);
                     num1 = "";
                     num2 = parseFloat(currentInput);
-                }
-                if( num2 && previousSimbol === "=") {
+                } else if( num2 && previousSimbol === "=") {
                     input.innerHTML = getResult(currentInput, num2, previousOperator);
                 }
             }
-            if (value === "AC") {
+           else if (value === "AC") {
                 if( num1 && OPERATIONS.includes(previousSimbol) ) {
                     num1 = "";
                     input.innerHTML = "0";
@@ -96,7 +94,7 @@ btnContainer.addEventListener("click", (event) => {
                     input.innerHTML = "0";
                 }
             }
-            if( value === PERCENT) {
+           else if( value === PERCENT) {
                 if( currentInput && !OPERATIONS.includes(previousSimbol)){
                     input.innerHTML = currentInput / 100;
                 }
