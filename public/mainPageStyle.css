@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+}
+nav {
+    display: flex;
+    background-color: rgba(214, 238, 237, 0.69);
+    justify-content: space-between;
+}
+
+.navLinkContainer > ul > li > a {
+    color: #000;
+    font-family: "Inter";
+}
+ul{
+    display: flex;
+    list-style: none;
+}
+
+li{
+    margin: 10px;
+}
+
+a{
+    text-decoration: none;
+}
+.btn {
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;;
+    background-color: #FFFFFF;
+    margin: 10px;
+    font-family: "Inter";
+}
+
+div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.coloredBtn {
+    color: #FFFFFF;
+    background-color: #0080FE;
+}
+
+.logoContainer > img {
+    border-radius: 8px;
+    overflow: hidden;
+}
