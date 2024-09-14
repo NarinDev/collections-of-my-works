@@ -47,3 +47,94 @@ div {
     border-radius: 8px;
     overflow: hidden;
 }
+
+.garland {
+    width: 100%;
+    height: 100px;
+    background-color: rgba(214, 238, 237, 0.69);
+    --red: #d63638;
+    --yellow: #f0c33c;
+    --green: #00ba37;
+    --blue: #3582c4;
+    --speed: 1.5s;
+}
+
+.red {
+    fill: var(--red);
+    animation: var(--speed) alternate 0s infinite blinkRed;
+}
+
+.yellow {
+    fill: var(--yellow);
+    animation: var(--speed) alternate 0s infinite blinkYellow;
+}
+
+.green {
+    fill: var(--green);
+    animation: var(--speed) alternate 0s infinite blinkGreen;
+}
+
+.blue {
+    fill: var(--blue);
+    animation: var(--speed) alternate 0s infinite blinkBlue;
+}
+
+@keyframes blinkRed {
+    0% {
+        fill: var(--red);
+    }
+    25% {
+        fill: var(--yellow);
+    }
+    50% {
+        fill: var(--green);
+    }
+    75% {
+        fill: var(--blue);
+    }
+}
+
+@keyframes blinkYellow {
+    0% {
+        fill: var(--yellow);
+    }
+    25% {
+        fill: var(--green);
+    }
+    50% {
+        fill: var(--blue);
+    }
+    75% {
+        fill: var(--red);
+    }
+}
+
+@keyframes blinkGreen {
+    0% {
+        fill: var(--green);
+    }
+    25% {
+        fill: var(--blue);
+    }
+    50% {
+        fill: var(--red);
+    }
+    75% {
+        fill: var(--yellow);
+    }
+}
+
+@keyframes blinkBlue {
+    0% {
+        fill: var(--blue);
+    }
+    25% {
+        fill: var(--red);
+    }
+    50% {
+        fill: var(--yellow);
+    }
+    75% {
+        fill: var(--green);
+    }
+}
