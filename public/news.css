@@ -1,0 +1,11 @@
+.container {
+    justify-content: stretch;
+    align-items: stretch;
+}
+
+.btn {
+    background-color: dodgerblue;
+    color: white;
+    border-color: dodgerblue;
+    border-radius: 16px;
+}
