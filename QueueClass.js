@@ -31,7 +31,7 @@ examp
     .add(() => new Promise( (resolve, reject) => setTimeout(() => resolve("2"), 2000)))
     .add(() => new Promise( (resolve, reject) => setTimeout(() => resolve("3"), 3000)))
     .add(() => new Promise( (resolve, reject) => setTimeout(() => resolve("4"), 4000)))
-    .execute();
+    .execute().then();
 
 examp
     .addMultiple(
