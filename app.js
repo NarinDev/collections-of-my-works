@@ -1,9 +1,39 @@
 const express = require("express");
 const app = express();
+const axios = require("axios")
 
 const path = require('path');
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.get("/todos", (req, res) => {
+    res.send({
+        data: "got request"
+    })
+})
+
+
+app.get("/posts", (req, res) => {
+    axios({
+        method: "get",
+        url: "https://jsonplaceholder.org/posts"
+    }).then( value => {
+        res.send({
+            data: value.data
+        })
+    })
+})
+
+app.get("/users", (req, res) => {
+    axios({
+        method: "get",
+        url: "https://jsonplaceholder.org/users"
+    }).then( value => {
+        res.send({
+            data: value.data
+        })
+    })
+})
+
 app.get("/*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "public", "index.html"))
 })

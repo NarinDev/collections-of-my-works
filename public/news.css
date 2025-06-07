@@ -9,3 +9,22 @@
     border-color: dodgerblue;
     border-radius: 16px;
 }
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    align-items: center;
+}
+
+input[type="checkbox"] {
+    margin: 0;
+    margin-right: 8px;
+}
+
+li > label {
+    display: flex;
+    align-items: center;
+}
