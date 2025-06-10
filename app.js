@@ -23,6 +23,18 @@ app.get("/posts", (req, res) => {
     })
 })
 
+app.get("/post", (req, res) => {
+    console.log('%c++===HERE 2','background: lime', `https://jsonplaceholder.org/posts/${req.query.postId}`)
+    axios({
+        method: "get",
+        url: `https://jsonplaceholder.org/posts/${req.query.postId}`
+    }).then( value => {
+        res.send({
+            data: value.data
+        })
+    })
+})
+
 app.get("/users", (req, res) => {
     axios({
         method: "get",

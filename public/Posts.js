@@ -10,6 +10,7 @@ axios({
 
     posts.forEach( (post) => {
         const postcard = document.createElement("div");
+        postcard.dataset.postId = post.id;
         postcard.classList.add("post");
         postcard.innerHTML = `
             <div class="innerContainer">
@@ -28,4 +29,16 @@ axios({
 
         postsContainer.append(postcard)
     })
+})
+
+postsContainer.addEventListener('click', (event) => {
+    const postId = event.target.closest('.post').dataset.postId
+    console.log('%c++===','background: red', postId)
+    if (!!postId) {
+        axios.get('/post', {
+            params: { postId }
+        }).then((res) => {
+            console.log('%c++===HERE RESULT','background: lime', res)
+        })
+    }
 })
