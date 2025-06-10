@@ -1,0 +1,62 @@
+.titleContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+.theDiv {
+    display: flex;
+    background-color: lightgrey;
+    border: solid gray 1px;
+    border-radius: 10px;
+    height: 50px;
+    margin-top: 10px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.post {
+    width: 30%;
+    height: auto;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+    margin-top: 30px;
+}
+
+.postTop {
+    display: flex;
+    align-items: center;
+}
+
+.postImg {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 10px;
+    border: solid black 1px;
+    box-sizing: border-box;
+}
+
+.postTitle {
+    display: inline-block; /* или block, чтобы работали width и overflow */
+    white-space: nowrap; /* запрет переноса строк */
+    overflow: hidden; /* скрытие выходящего за границы текста */
+    text-overflow: ellipsis; /* добавление троеточия */
+    max-width: 100%; /* ограничение по ширине родителя */
+}
+
+.innerContainer {
+    overflow: hidden;
+    box-sizing: border-box;
+    border: solid 1px;
+    border-radius: 16px;
+    padding: 10px;
+}
