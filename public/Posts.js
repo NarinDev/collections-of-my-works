@@ -32,7 +32,7 @@ axios({
 })
 
 postsContainer.addEventListener('click', (event) => {
-    const postId = event.target.closest('.post').dataset.postId
+    const postId = event.target?.closest('.post')?.dataset.postId
     console.log('%c++===','background: red', postId)
     if (!!postId) {
         axios.get('/post', {
